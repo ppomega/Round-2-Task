@@ -17,7 +17,7 @@ public class CouponUpdate {
     CustomerRepo customerRepo;
     DiscountRepo  discountRepo;
     DiscountCustomerRepo discountCustomerRepo;
-
+    CouponDelete coupenDelete;
     public CouponUpdate(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
@@ -49,6 +49,11 @@ public class CouponUpdate {
                     discountCustomerRepo.save(dc);
                 }
             }
+        }
+        else{
+            DiscountCustomer d = discountCustomerRepo.findByDiscount(existing);
+            discountCustomerRepo.deleteById(d.getId());;
+        
         }
         return "Success";
     }
